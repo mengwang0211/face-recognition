@@ -8,8 +8,16 @@
 
 
 from elasticsearch import Elasticsearch
+import json
 
-es = Elasticsearch()
+f = open('es_config.json', 'r+')
+str_json = f.read()
+# 将 单引号 替换为 双引号
+temp = str_json.replace("'", '"')
+# loads 将 字符串 解码为 字典
+temp = json.loads(temp)
+
+es = Elasticsearch([temp['host']])
 
 
 def insert(body):
