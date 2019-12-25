@@ -13,8 +13,8 @@ services:
       hostname: es
       restart: always
 
-    python3:
-      container_name: python3
+    face-ai-web:
+      container_name: face-ai-web
       build:
         context: ./
         dockerfile: Dockerfile
@@ -23,7 +23,7 @@ services:
       networks:
         web:
           ipv4_address: 192.168.2.2
-      hostname: python3
+      hostname: face-ai-web
       restart: always
 
 networks:
