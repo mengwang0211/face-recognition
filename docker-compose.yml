@@ -1,0 +1,35 @@
+version: '2'
+services:
+    es:
+      container_name: es
+      image: 'hzwangmeng/es'
+      ports:
+        - "9200"
+        - "9300"
+      networks:
+        web:
+          ipv4_address: 192.168.2.1
+      dns: 192.168.1.1
+      hostname: es
+      restart: always
+
+    python3:
+      container_name: python3
+      build:
+        context: ./
+        dockerfile: Dockerfile
+      ports:
+        - "5000:5000"
+      networks:
+        web:
+          ipv4_address: 192.168.2.2
+      hostname: python3
+      restart: always
+
+networks:
+  web:
+    driver: 'bridge'
+    ipam:
+      config:
+        - subnet: 192.168.2.0/24
+          gateway: 192.168.2.254
