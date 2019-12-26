@@ -124,3 +124,7 @@ files/
 filescopy/
 
 .idea/
+
+es/
+
+logs/

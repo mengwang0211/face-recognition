@@ -4,11 +4,14 @@ services:
       container_name: es
       image: 'hzwangmeng/es'
       ports:
-        - "9200"
-        - "9300"
+        - "9200:9200"
+        - "9300:9300"
       networks:
         web:
           ipv4_address: 192.168.2.1
+      volumes:
+        - ./es/data/:/usr/share/elasticsearch/data:rw
+        - ./es/log/:/usr/share/elasticsearch/logs:rw
       dns: 192.168.1.1
       hostname: es
       restart: always
@@ -19,7 +22,12 @@ services:
         context: ./
         dockerfile: Dockerfile
       ports:
+        - "8000:8000"
         - "5000:5000"
+      volumes:
+        - ./files/:/code/files:rw
+        - ./filescopy/:/code/filescopy:rw
+        - ./logs/:/code/logs:rw
       networks:
         web:
           ipv4_address: 192.168.2.2

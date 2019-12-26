@@ -7,8 +7,9 @@
 # @Software: ${PRODUCT_NAME}
 
 
-from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch, NotFoundError
 import json
+import traceback
 
 f = open('es_config.json', 'r+')
 str_json = f.read()
@@ -47,5 +48,6 @@ def select(name):
             }
         )
         return response
-    except:
-        return None;
+    except Exception as e:
+        traceback.print_exc()
+        return None
