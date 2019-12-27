@@ -18,8 +18,9 @@ WORKDIR /code
 ENV PORT 8000
 EXPOSE 8000 5000
 
-CMD ["/usr/local/bin/gunicorn", "-w", "2","--log-level","debug","--log-file","./logs/api.log","-b", ":8000", "webserver:app"]
+#CMD ["/usr/local/bin/gunicorn", "-w", "10","--log-level","debug","--log-file","./logs/api.log","-b", ":8000", "webserver:app"]
 
+CMD ["python", "webserver.py"]
 
 
 

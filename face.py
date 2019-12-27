@@ -8,9 +8,6 @@
 
 import face_recognition
 
-# 人脸比对
-import numpy as np
-
 
 def compare(origin, current):
     known_image = face_recognition.load_image_file(origin)
@@ -26,8 +23,11 @@ def compare(origin, current):
 # 检测是否含有人脸
 def check(face_img):
     img = face_recognition.load_image_file(face_img)
-    face_locations = face_recognition.face_locations(img)
+    # top, right, bottom, left
+    face_locations = face_recognition.face_locations(img, model='cnn')
+    check = True
     if len(face_locations) == 0:
-        return False
+        check = False
+        return {"check": check}
     else:
-        return True
+        return {"check": check, "location": face_locations[0]}

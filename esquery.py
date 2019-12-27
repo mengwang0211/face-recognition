@@ -22,7 +22,8 @@ es = Elasticsearch([temp['host']])
 
 
 def insert(body):
-    es.index(index="user_face", doc_type="user_face", body=body)
+    data = es.index(index="user_face", doc_type="user_face", body=body)
+    return data
 
 
 def selectAll():
