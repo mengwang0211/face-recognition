@@ -1,4 +1,4 @@
-### faceai
+### face-recognition
 
 #### 基于face_recognition提供人脸验证服务
 
