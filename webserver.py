@@ -79,7 +79,7 @@ def register():
                     return jsonify({"code": 0, "message": "Succeed", "data": user_face})
             else:
                 return jsonify(
-                    {"code": 500, "message": "该姓名已经被注册，请勿重复提交"})
+                    {"code": 1001, "message": "user is already exist"})
     except Exception as ec:
         logger.error(traceback.format_exc())
         return exception__reponse()
